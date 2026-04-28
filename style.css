@@ -182,6 +182,43 @@ input.invalid { border-color: var(--error); }
   min-height: 1em;
 }
 
+/* ── Pledge ── */
+.pledge-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.pledge-chip {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pledge-chip input[type="radio"] { display: none; }
+
+.pledge-chip span {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid #DDD0C4;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--cream);
+  transition: all 0.2s;
+  user-select: none;
+  font-weight: 500;
+}
+
+.pledge-chip input:checked + span {
+  border-color: var(--gold);
+  background: #FFF8EE;
+  color: var(--brown);
+  font-weight: 700;
+}
+
+.pledge-chip:hover span { border-color: var(--gold-light); }
+
 /* ── Role Cards ── */
 .role-grid {
   display: grid;
