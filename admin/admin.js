@@ -23,17 +23,23 @@ function logout() {
   location.reload();
 }
 
-// Allow Enter key on password field
-document.getElementById('passwordInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') login();
-});
+// Initialise once DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Allow Enter key on password field
+  const pwInput = document.getElementById('passwordInput');
+  if (pwInput) {
+    pwInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') login();
+    });
+  }
 
-// Auto-login if session exists
-if (sessionStorage.getItem('flc_admin') === '1') {
-  document.getElementById('loginScreen').classList.add('hidden');
-  document.getElementById('dashboard').classList.remove('hidden');
-  loadEntries();
-}
+  // Auto-login if session exists from a previous visit
+  if (sessionStorage.getItem('flc_admin') === '1') {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    loadEntries();
+  }
+});
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 let allEntries = [];
