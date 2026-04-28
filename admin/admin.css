@@ -273,6 +273,17 @@ tr:hover td { background: #FFFAF4; }
 .role-Expert   { background: #EAF7EE; color: #1A7A3C; }
 .role-Both     { background: #FFF3E0; color: #B45309; }
 
+.pledge-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #FFF8EE;
+  color: var(--brown);
+  border: 1px solid #E8D0A0;
+}
+
 .topics-cell { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .topic-tag {
   background: var(--cream);
