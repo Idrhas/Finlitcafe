@@ -7,14 +7,40 @@ const ADMIN_PASSWORD = 'Aboogeeky123';
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 function login() {
-  const pw = document.getElementById('passwordInput').value;
+  const pw    = document.getElementById('passwordInput').value;
+  const errEl = document.getElementById('loginError');
+  const card  = document.querySelector('.login-card');
+
   if (pw === ADMIN_PASSWORD) {
+    errEl.classList.remove('visible');
     sessionStorage.setItem('flc_admin', '1');
     document.getElementById('loginScreen').classList.add('hidden');
     document.getElementById('dashboard').classList.remove('hidden');
     loadEntries();
   } else {
-    document.getElementById('loginError').classList.remove('hidden');
+    // Show error message
+    errEl.classList.add('visible');
+    // Shake the card for feedback
+    card.classList.remove('shake');
+    void card.offsetWidth; // force reflow so animation restarts
+    card.classList.add('shake');
+    // Clear the password field so user can retype cleanly
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+  }
+}
+
+function togglePw() {
+  const input  = document.getElementById('passwordInput');
+  const toggle = document.getElementById('pwToggle');
+  if (input.type === 'password') {
+    input.type = 'text';
+    toggle.textContent = '🙈';
+    toggle.setAttribute('aria-label', 'Hide password');
+  } else {
+    input.type = 'password';
+    toggle.textContent = '👁';
+    toggle.setAttribute('aria-label', 'Show password');
   }
 }
 
@@ -25,11 +51,15 @@ function logout() {
 
 // Initialise once DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Allow Enter key on password field
   const pwInput = document.getElementById('passwordInput');
   if (pwInput) {
+    // Enter key submits
     pwInput.addEventListener('keydown', e => {
       if (e.key === 'Enter') login();
+    });
+    // Hide error as soon as user starts retyping
+    pwInput.addEventListener('input', () => {
+      document.getElementById('loginError').classList.remove('visible');
     });
   }
 
