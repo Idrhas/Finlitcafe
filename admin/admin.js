@@ -161,6 +161,7 @@ function renderTable() {
         <td>${esc(e.zip_code)}</td>
         <td><span class="role-badge role-${esc(e.role)}">${esc(e.role)}</span></td>
         <td><div class="topics-cell">${topicsHtml}</div></td>
+        <td>${e.pledge ? `<span class="pledge-badge">${esc(e.pledge)}</span>` : '<span style="color:var(--text-muted);font-size:0.8rem">—</span>'}</td>
         <td>${date}</td>
       </tr>`;
   }).join('');
@@ -180,7 +181,7 @@ function sortBy(key) {
 function exportCSV() {
   if (!allEntries.length) return;
 
-  const headers = ['First Name', 'Last Name', 'Email', 'ZIP', 'Role', 'Topics', 'Signed Up'];
+  const headers = ['First Name', 'Last Name', 'Email', 'ZIP', 'Role', 'Topics', 'Pledge', 'Signed Up'];
   const rows = allEntries.map(e => [
     e.first_name,
     e.last_name,
@@ -188,6 +189,7 @@ function exportCSV() {
     e.zip_code,
     e.role,
     Array.isArray(e.topics) ? e.topics.join('; ') : '',
+    e.pledge || '',
     e.created_at ? new Date(e.created_at).toISOString() : '',
   ]);
 
