@@ -16,9 +16,12 @@
       <div class="login-logo">☕</div>
       <h1>FinLit Café Admin</h1>
       <p>Enter your admin password to view waitlist entries.</p>
-      <input type="password" id="passwordInput" placeholder="Admin password" autocomplete="current-password" />
-      <span class="login-error hidden" id="loginError">Incorrect password.</span>
-      <button class="btn-login" onclick="login()">Sign In</button>
+      <div class="pw-wrap">
+        <input type="password" id="passwordInput" placeholder="Admin password" autocomplete="current-password" />
+        <button class="pw-toggle" id="pwToggle" type="button" aria-label="Show password" onclick="togglePw()">👁</button>
+      </div>
+      <div class="login-error" id="loginError">⚠ Incorrect password. Please try again.</div>
+      <button class="btn-login" id="loginBtn" onclick="login()">Sign In</button>
     </div>
   </div>
 
