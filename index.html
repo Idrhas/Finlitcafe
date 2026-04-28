@@ -64,6 +64,16 @@
             <input type="text" id="zip" placeholder="e.g. 100001, SW1A 1AA" maxlength="12" autocomplete="postal-code" />
             <span class="field-error" id="zipErr"></span>
           </div>
+          <div class="field full">
+            <label>I'm willing to pledge <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+            <div class="pledge-grid">
+              <label class="pledge-chip"><input type="radio" name="pledge" value="$5" /><span>$5</span></label>
+              <label class="pledge-chip"><input type="radio" name="pledge" value="$10" /><span>$10</span></label>
+              <label class="pledge-chip"><input type="radio" name="pledge" value="$25" /><span>$25</span></label>
+              <label class="pledge-chip"><input type="radio" name="pledge" value="$50+" /><span>$50+</span></label>
+              <label class="pledge-chip"><input type="radio" name="pledge" value="My Time" /><span>🤝 My Time</span></label>
+            </div>
+          </div>
         </div>
         <div class="btn-row">
           <button class="btn-primary" onclick="goStep(2)">Continue →</button>
@@ -134,6 +144,7 @@
           <div class="review-name" id="reviewName"></div>
           <div class="review-role" id="reviewRole"></div>
           <div class="review-topics" id="reviewTopics"></div>
+          <div id="reviewPledge" style="margin-top:0.6rem;background:var(--cream-dark);border-radius:999px;padding:0.25rem 0.85rem;font-size:0.8rem;color:var(--brown);font-weight:600;display:none;"></div>
         </div>
         <div class="btn-row">
           <button class="btn-secondary" onclick="goStep(3)">← Back</button>
