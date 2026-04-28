@@ -1,6 +1,11 @@
 // ── Config — same values as app.js ───────────────────────────────────────────
-const SUPABASE_URL     = 'https://peyfqyqsltxnwvhsfzxl.supabase.co';
+const SUPABASE_URL      = 'https://peyfqyqsltxnwvhsfzxl.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_uzkq-b0BRv4BDesrqIz7Ag_fair9PpJ';
+
+// Service role key — bypasses RLS so admin can read all rows.
+// This is safe here because the page is password-protected.
+// NEVER put this key in app.js or any public-facing file.
+const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBleWZxeXFzbHR4bnd2aHNmenhsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NzI5NDAxMCwiZXhwIjoyMDkyODcwMDEwfQ.15h7YWUZ7D4rfcUyyffv2NiVx_6JjTMeIdwa_3WClco';
 
 // Set your admin password here (or use Supabase Auth for production)
 const ADMIN_PASSWORD = 'Aboogeeky123';
@@ -82,8 +87,8 @@ async function loadEntries() {
       `${SUPABASE_URL}/rest/v1/waitlist?select=*&order=created_at.desc`,
       {
         headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'apikey': SUPABASE_SERVICE_KEY,
+          'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
         },
       }
     );
@@ -207,3 +212,4 @@ function esc(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+
