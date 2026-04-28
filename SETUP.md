@@ -126,3 +126,4 @@ You can also view entries at any time by going to:
 **Supabase → Table Editor → waitlist**
 
 It looks like a spreadsheet. You can filter, sort, and export from there too.
+
