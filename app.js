@@ -60,10 +60,13 @@ function validateBasicInfo() {
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   setError('emailErr', 'email', !email ? 'Email is required.' : !emailOk ? 'Enter a valid email.' : '');
 
-  const zipOk = /^\d{5}(-\d{4})?$/.test(zip);
-  setError('zipErr', 'zip', !zip ? 'ZIP code is required.' : !zipOk ? 'Enter a valid ZIP code.' : '');
+  // Accepts: US (12345 or 12345-6789), African numeric (4–6 digits),
+  // and alphanumeric postal codes up to 10 characters (e.g. Ghana, South Africa)
+  const zipOk = /^[A-Za-z0-9][A-Za-z0-9\s\-]{1,9}$/.test(zip);
+  setError('zipErr', 'zip', !zip ? 'Postal code is required.' : !zipOk ? 'Enter a valid postal code (e.g. 100001, SW1A 1AA).' : '');
 
   if (!firstName || !lastName || !email || !emailOk || !zip || !zipOk) valid = false;
+
 
   if (valid) {
     state.firstName = firstName;
