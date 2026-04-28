@@ -14,6 +14,7 @@ const state = {
   zip: '',
   role: '',
   topics: [],
+  pledge: '',
 };
 
 // ── Step navigation ───────────────────────────────────────────────────────────
@@ -73,6 +74,9 @@ function validateBasicInfo() {
     state.lastName  = lastName;
     state.email     = email;
     state.zip       = zip;
+    // Pledge is optional — grab whichever radio is checked (may be none)
+    const pledgeEl = document.querySelector('input[name="pledge"]:checked');
+    state.pledge = pledgeEl ? pledgeEl.value : '';
   }
 
   return valid;
@@ -124,6 +128,14 @@ function populateReview() {
   topicsEl.innerHTML = state.topics
     .map(t => `<span class="tag">${t}</span>`)
     .join('');
+
+  const pledgeEl = document.getElementById('reviewPledge');
+  if (state.pledge) {
+    pledgeEl.textContent = `Pledge: ${state.pledge}`;
+    pledgeEl.style.display = 'inline-block';
+  } else {
+    pledgeEl.style.display = 'none';
+  }
 }
 
 // ── Submit ────────────────────────────────────────────────────────────────────
@@ -154,6 +166,7 @@ async function submitForm() {
         zip_code:   state.zip,
         role:       state.role,
         topics:     state.topics,
+        pledge:     state.pledge || null,
       }),
     });
 
