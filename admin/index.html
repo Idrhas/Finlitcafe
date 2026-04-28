@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinLit Café — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- Login screen -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">☕</div>
+      <h1>FinLit Café Admin</h1>
+      <p>Enter your admin password to view waitlist entries.</p>
+      <input type="password" id="passwordInput" placeholder="Admin password" autocomplete="current-password" />
+      <span class="login-error hidden" id="loginError">Incorrect password.</span>
+      <button class="btn-login" onclick="login()">Sign In</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="hidden">
+
+    <header class="admin-header">
+      <div class="admin-logo">
+        <span>☕</span>
+        <span>FinLit Café — Waitlist Admin</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-export" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="btn-logout" onclick="logout()">Sign Out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- Stats -->
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="stat-num" id="statTotal">—</div><div class="stat-label">Total Signups</div></div>
+        <div class="stat-card"><div class="stat-num" id="statLearners">—</div><div class="stat-label">Learners</div></div>
+        <div class="stat-card"><div class="stat-num" id="statExperts">—</div><div class="stat-label">Experts</div></div>
+        <div class="stat-card"><div class="stat-num" id="statBoth">—</div><div class="stat-label">Both</div></div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-row">
+        <input type="text" id="searchInput" placeholder="Search name, email, ZIP…" oninput="renderTable()" />
+        <select id="roleFilter" onchange="renderTable()">
+          <option value="">All Roles</option>
+          <option value="Learner">Learner</option>
+          <option value="Expert">Expert</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table id="entriesTable">
+          <thead>
+            <tr>
+              <th onclick="sortBy('created_at')"># <span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('first_name')">Name <span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('email')">Email <span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('zip_code')">ZIP</th>
+              <th onclick="sortBy('role')">Role <span class="sort-icon">↕</span></th>
+              <th>Topics</th>
+              <th onclick="sortBy('created_at')">Signed Up <span class="sort-icon">↕</span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="7" class="loading-row">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        <span id="tableCount"></span>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
