@@ -66,7 +66,18 @@ body {
 
 .login-card input:focus { border-color: var(--gold); }
 
-.login-error { display: block; color: var(--error); font-size: 0.8rem; margin-bottom: 0.75rem; }
+/* hidden by default — JS removes .hidden on wrong password */
+.login-error {
+  display: none;
+  color: var(--error);
+  font-size: 0.82rem;
+  margin-bottom: 0.75rem;
+  background: #FFF0EE;
+  border: 1px solid #F5C6C0;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+.login-error.visible { display: block; }
 
 .btn-login {
   width: 100%;
@@ -84,6 +95,41 @@ body {
 }
 
 .btn-login:hover { background: var(--brown-light); }
+
+/* Shake animation on wrong password */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+.login-card.shake { animation: shake 0.4s ease; }
+
+/* Password field wrapper for show/hide toggle */
+.pw-wrap {
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+.pw-wrap input {
+  width: 100%;
+  margin-bottom: 0;
+  padding-right: 2.75rem;
+}
+.pw-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-muted);
+  padding: 0;
+  line-height: 1;
+}
+.pw-toggle:hover { color: var(--brown); }
 
 /* ── Admin Header ── */
 .admin-header {
