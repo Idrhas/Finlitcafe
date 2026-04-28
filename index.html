@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The FinLit Café — Financial Literacy Through Community</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-icon">☕</span>
+      <div>
+        <div class="logo-name">The FinLit Café</div>
+        <div class="logo-tagline">Financial Literacy Through Community</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Where your community<br/>learns money together.</h1>
+      <p class="hero-sub">Join local sessions on budgeting, investing, credit, and more — led by real experts in your neighborhood.</p>
+    </div>
+  </section>
+
+  <!-- ── Multi-step Form ── -->
+  <section class="form-section">
+    <div class="form-card" id="formCard">
+
+      <!-- Progress bar -->
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="step-label" id="stepLabel">Step 1 of 4</div>
+
+      <!-- Step 1: Basic Info -->
+      <div class="step active" id="step1">
+        <h2>Join the Waitlist</h2>
+        <p class="step-sub">Be the first to know when we launch in your neighborhood.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Jane" autocomplete="given-name" />
+            <span class="field-error" id="firstNameErr"></span>
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Doe" autocomplete="family-name" />
+            <span class="field-error" id="lastNameErr"></span>
+          </div>
+          <div class="field full">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="jane@example.com" autocomplete="email" />
+            <span class="field-error" id="emailErr"></span>
+          </div>
+          <div class="field full">
+            <label for="zip">ZIP Code</label>
+            <input type="text" id="zip" placeholder="10001" maxlength="10" autocomplete="postal-code" />
+            <span class="field-error" id="zipErr"></span>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="goStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Role -->
+      <div class="step" id="step2">
+        <h2>How will you participate?</h2>
+        <p class="step-sub">Select your role in the FinLit Café community.</p>
+        <div class="role-grid">
+          <div class="role-card" data-role="Learner" onclick="selectRole(this)">
+            <span class="role-icon">📚</span>
+            <div class="role-name">Learner</div>
+            <div class="role-desc">Attend sessions, build financial knowledge</div>
+          </div>
+          <div class="role-card" data-role="Expert" onclick="selectRole(this)">
+            <span class="role-icon">🎓</span>
+            <div class="role-name">Expert</div>
+            <div class="role-desc">Host sessions, share your expertise</div>
+          </div>
+          <div class="role-card" data-role="Both" onclick="selectRole(this)">
+            <span class="role-icon">🤝</span>
+            <div class="role-name">Both</div>
+            <div class="role-desc">Learn and teach in the community</div>
+          </div>
+        </div>
+        <span class="field-error" id="roleErr"></span>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="goStep(1)">← Back</button>
+          <button class="btn-primary" onclick="goStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Topics -->
+      <div class="step" id="step3">
+        <h2>What interests you?</h2>
+        <p class="step-sub">Select topics you want to learn or teach. ⭐ = Suggested for your area.</p>
+        <div class="topics-grid">
+          <label class="topic-chip"><input type="checkbox" value="Credit Building" /><span>Credit Building</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Budgeting" /><span>Budgeting</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Debt Management" /><span>Debt Management</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Investing 101" /><span>Investing 101 ⭐</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Saving" /><span>Saving</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Home Buying" /><span>Home Buying ⭐</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Taxes" /><span>Taxes</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Retirement" /><span>Retirement</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Student Loans" /><span>Student Loans</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Insurance" /><span>Insurance</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Small Business" /><span>Small Business</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Banking Basics" /><span>Banking Basics</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Crypto & Digital" /><span>Crypto & Digital</span></label>
+          <label class="topic-chip"><input type="checkbox" value="Career & Income" /><span>Career & Income</span></label>
+        </div>
+        <span class="field-error" id="topicsErr"></span>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="goStep(2)">← Back</button>
+          <button class="btn-primary" onclick="goStep(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Review -->
+      <div class="step" id="step4">
+        <h2>You're all set!</h2>
+        <p class="step-sub">Here's your FinLit Café profile.</p>
+        <div class="review-card">
+          <div class="review-avatar" id="reviewAvatar"></div>
+          <div class="review-name" id="reviewName"></div>
+          <div class="review-role" id="reviewRole"></div>
+          <div class="review-topics" id="reviewTopics"></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="goStep(3)">← Back</button>
+          <button class="btn-primary btn-submit" id="submitBtn" onclick="submitForm()">
+            <span id="submitText">Join the Waitlist 🎉</span>
+            <span id="submitSpinner" class="spinner hidden"></span>
+          </button>
+        </div>
+        <p class="submit-error hidden" id="submitError">Something went wrong. Please try again.</p>
+      </div>
+
+      <!-- Step 5: Success -->
+      <div class="step" id="step5">
+        <div class="success-content">
+          <div class="success-icon">🎉</div>
+          <h2>Welcome to FinLit Café!</h2>
+          <p>You're on the list. We'll reach out when we launch in your area.</p>
+          <p class="success-follow">Follow us for updates: <strong>@thefinlitcafe</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <p>© 2025 The FinLit Café · <a href="mailto:hello@thefinlitcafe.com">hello@thefinlitcafe.com</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
