@@ -131,7 +131,7 @@ function populateReview() {
 
   const pledgeEl = document.getElementById('reviewPledge');
   if (state.pledge) {
-    pledgeEl.textContent = `Pledge: ${state.pledge}`;
+    pledgeEl.textContent = `Investment: ${state.pledge}`;
     pledgeEl.style.display = 'inline-block';
   } else {
     pledgeEl.style.display = 'none';
